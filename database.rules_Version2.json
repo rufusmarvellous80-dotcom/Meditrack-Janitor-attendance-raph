@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('users').child(auth.uid).child('role').val() === 'admin')",
+        ".write": "auth != null && (auth.uid === $uid || root.child('users').child(auth.uid).child('role').val() === 'admin')"
+      }
+    },
+    "staff": {
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin'"
+    },
+    "shifts": {
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin'"
+    },
+    "attendance": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}
